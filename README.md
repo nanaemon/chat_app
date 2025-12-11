@@ -1,5 +1,6 @@
 # ①課題名
 ココログ – こころ×ログ（感情整理アプリ）
+<img width="817" height="938" alt="スクリーンショット" src="https://github.com/user-attachments/assets/ee139e7c-0e16-427c-9cad-5b875b50aa38" />
 
 ## ②課題内容（どんな作品か）
 このアプリは、認知行動療法（CBT）の 「コラム法」 をベースにした、
@@ -16,6 +17,7 @@
 自分の心の動きが見える化され、少しラクになること を目指しています。
 
 ## ③アプリのデプロイURL
+https://nanaemon.github.io/chat_app/
 
 ## ④アプリのログイン用IDまたはPassword（ある場合）
 なし
