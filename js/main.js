@@ -5,12 +5,22 @@
         from "https://www.gstatic.com/firebasejs/9.1.0/firebase-database.js";
     // Your web app's Firebase configuration
     // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+
+    // Firebase接続フラグ
+    let db = null;
+    let dbRef = null;
+    let firebaseEnabled = true;
+
     // TODO：Gitには削除してからUPすること
-    const firebaseConfig = {
-    }; 
-    const app = initializeApp(firebaseConfig);
-    const db = getDatabase(app); //RealtimeDBに接続
-    const dbRef = ref(db, "columns"); //RealtimeDB内の"columns"を使う
+    try {
+      const firebaseConfig = {}; 
+      const app = initializeApp(firebaseConfig);
+      db = getDatabase(app); //RealtimeDBに接続
+      dbRef = ref(db, "columns"); //RealtimeDB内の"columns"を使う
+    } catch (e) {
+      console.warn("Firebaseが無効です（デモモードで表示のみ動作）");
+      firebaseEnabled = false;
+    }
 
     // -------------ジャンル選択時に表示する感情リスト---------------------
     const emotionList = {
@@ -118,8 +128,10 @@
       } else {
           // ----------Firebaseに保存----------
           // Firebaseに新しい場所を作って保存
-          const newPostRef = push(dbRef); 
-          set(newPostRef, data);    
+          if (firebaseEnabled) {
+            const newPostRef = push(dbRef); 
+            set(newPostRef, data);    
+          }
       }       
 
       // ----------入力欄をリセット----------
@@ -134,17 +146,18 @@
 
     // ============= リアルタイムで一覧に表示する =============
     // Firebase上でデータが追加されたら画面にも追加
-    onChildAdded(dbRef, function(snapshot){
-        const key  = snapshot.key;   // Firebaseが付けたユニークID
-        const data = snapshot.val(); // 中身のオブジェクト
+    if (firebaseEnabled) {
+      onChildAdded(dbRef, function(snapshot){
+          const key  = snapshot.key;   // Firebaseが付けたユニークID
+          const data = snapshot.val(); // 中身のオブジェクト
 
-        // 最初の1回だけ見出しを挿入
-        insertListTitle();  
-        // 一覧を表示
-        $("#output").show();
-
-        addRecord(key, data);     
-    });
+          // 最初の1回だけ見出しを挿入
+          insertListTitle();  
+          // 一覧を表示
+          $("#output").show();
+          addRecord(key, data);     
+      });
+    }
 
     // ============= 削除機能 =============
     // 削除ボタン
