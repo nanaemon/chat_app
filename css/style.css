@@ -1,0 +1,213 @@
+/* ------------------------------
+   基本設定
+------------------------------ */
+body {
+  font-family: "Yomogi", "M PLUS Rounded 1c", sans-serif;
+  color: #444;
+  margin: 20px;
+  background: #f7f7f7;
+}
+
+/* タイトル */
+.app-title {
+  font-size: 2rem;
+  text-align: center;
+  color: #444;
+  margin-bottom: 20px;
+  letter-spacing: 2px;
+}
+
+/* ------------------------------
+   入力フォーム（ノート風）
+------------------------------ */
+#form {
+  max-width: 800px;
+  background: repeating-linear-gradient(
+    white,
+    white 30px,
+    #e0e0e0 31px
+  );
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+  margin: 20px auto 24px;
+}
+
+#form label {
+  display: block;
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+#form input,
+#form select,
+#form textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 4px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-sizing: border-box;
+  color: #5a5757;
+  font-family: "Yomogi", sans-serif;
+}
+
+#form textarea {
+  min-height: 70px;
+}
+
+::placeholder {
+  color: #aaa;
+}
+
+/* プルダウンの選択肢表示 */
+select {
+  color: #555;
+}
+
+/* 感情ジャンル＋感情の横並び */
+.emotion-row {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.emotion-col {
+  flex: 1;
+}
+
+/* スマホのとき縦並び */
+@media (max-width: 600px) {
+  .emotion-row {
+    flex-direction: column;
+  }
+}
+
+/* ------------------------------
+   登録／更新ボタン
+------------------------------ */
+#save {
+  margin-top: 16px;
+  width: 100%;
+  background: #fff;
+  border: 2px dashed #7A7A7A;
+  color: #555;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-family: "Yomogi", sans-serif;
+  transition: 0.2s;
+  cursor: pointer;
+}
+
+#save:hover {
+  border-color: #555;
+  color: #333;
+  background-color: rgba(0,0,0,0.03);
+}
+
+/* ------------------------------
+   記録一覧部分（ノート風）
+------------------------------ */
+#output {
+  display: none;
+  max-width: 800px;
+  background: repeating-linear-gradient(
+    white,
+    white 28px,
+    #e0e0e0 29px
+  );
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+  margin: 20px auto;
+}
+
+/* 見出し（記事一覧） */
+.list-title {
+  font-family: "Yomogi", sans-serif;
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+/* ------------------------------
+   付箋カード
+------------------------------ */
+.record {
+  width: 85%;
+  margin: 15px auto;
+  background: #fff;
+  padding: 14px;
+  border-radius: 6px;
+  border-left: 6px solid #ccc;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  overflow-wrap: break-word;
+}
+
+.record p {
+  font-family: "Yomogi", sans-serif;
+  color: #5a5757;
+  margin: 6px 0;
+  line-height: 1.4;
+}
+
+/* ------------------------------
+   編集／削除ボタン（丸いアイコン風）
+------------------------------ */
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.record .actions button {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
+  transition: all 0.15s ease;
+}
+
+/* 編集（くすみブルー） */
+.actions .edit {
+  color:#517293;
+  opacity: 0.85;
+}
+
+/* 削除（くすみレッド） */
+.actions .delete {
+  color:  #ae7272;
+  opacity: 0.85;
+}
+
+.actions button:hover {
+  opacity: 1;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+}
+
+/* ------------------------------
+   カテゴリごとの付箋色
+------------------------------ */
+.record[data-category="negative"] {
+  background-color: #E3F2FD;
+  border-left-color: #64B5F6;
+}
+
+.record[data-category="neutral"] {
+  background-color: #E8F5E9;
+  border-left-color: #81C784;
+}
+
+.record[data-category="positive"] {
+  background-color: #FFFDE7;
+  border-left-color: #FFF59D;
+}
